@@ -1,13 +1,13 @@
 package main
 
-import(
+import (
+	"discord_bot/bot"
+	"discord_bot/config"
 	"fmt"
-	"discord-bot/bot"
-	"discord-bot/config"
-	"log"
 )
 
 func main() {
+	fmt.Println("bot starting now")
 	err := config.ReadConfig()
 
 	if err != nil {
@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	bot.Start
+	bot.Start()
 
 	<-make(chan struct{})
 	return
