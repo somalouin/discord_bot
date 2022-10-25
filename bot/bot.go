@@ -17,7 +17,9 @@ func Start() {
 		fmt.Println(err.Error())
 		return
 	}
+
 	u, err := goBot.User("@me")
+
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -35,10 +37,13 @@ func Start() {
 }
 
 func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
+	if m.Author == nil {
+		return
+	}
 	if m.Author.ID == BotId {
 		return
 	}
 	if m.Content == "ping" {
-		_, _ = s.ChannelMessageSend(m.ChannelID, "pong")
+		s.ChannelMessageSend(m.ChannelID, "pong")
 	}
 }
